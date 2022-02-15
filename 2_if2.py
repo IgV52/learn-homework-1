@@ -20,7 +20,17 @@ def main():
     Эта функция вызывается автоматически при запуске скрипта в консоли
     В ней надо заменить pass на ваш код
     """
-    pass
+    a,b = (input("Введите что то: ") for _ in range(2))
+
+    if not isinstance(a, str) and not isinstance(b, str):
+      return print(0)
+    elif a == b:
+      return print(1)
+    elif len(a) > len(b):
+      return print(2)
+    elif a != b and b == "learn":
+      return print(3)
     
 if __name__ == "__main__":
-    main()
+  main()
+

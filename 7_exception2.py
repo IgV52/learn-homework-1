@@ -13,12 +13,27 @@
     
 """
 
-def discounted(price, discount, max_discount=20)
+from argparse import _MutuallyExclusiveGroup
+
+
+def discounted(price, discount, max_discount=20):
     """
     Замените pass на ваш код
     """
-    pass
-    
+    try:
+      price = float(price)
+      discount = float(discount)
+      max_discount = int(max_discount)
+      finall_price = price - (price * discount / 100)
+      if max_discount >= 100:
+        raise ValueError("Слишком большая скидка")
+      if discount >= max_discount:
+        return price
+      else:
+        return finall_price
+    except (ValueError, TypeError):
+      print("Ошибка")
+
 if __name__ == "__main__":
     print(discounted(100, 2))
     print(discounted(100, "3"))

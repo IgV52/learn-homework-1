@@ -12,8 +12,11 @@
   бота отвечать, в каком созвездии сегодня находится планета.
 
 """
+from cgitb import text
 import logging
-
+import settings
+import ephem
+import time
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 logging.basicConfig(format='%(name)s - %(levelname)s - %(message)s',
@@ -29,6 +32,21 @@ PROXY = {
     }
 }
 
+def planet_name(update, context):
+    time = update.message.date 
+    time = time.strftime("%m/%d/%Y")
+    planet = context.args[0]
+    planet = getattr(ephem, planet)()
+    planet.compute(time)
+    star = ephem.constellation(planet)
+    stars = f"Сегодня находится в созвездии {star[1]}"
+    if len(star) == 2:
+      update.message.reply_text(stars)
+    else:
+      text = "Что то не так..."
+      update.message.reply_text(text)
+
+
 
 def greet_user(update, context):
     text = 'Вызван /start'
@@ -43,10 +61,11 @@ def talk_to_me(update, context):
 
 
 def main():
-    mybot = Updater("КЛЮЧ, КОТОРЫЙ НАМ ВЫДАЛ BotFather", request_kwargs=PROXY, use_context=True)
+    mybot = Updater(settings.API_KEY, request_kwargs=PROXY, use_context=True)
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
+    dp.add_handler(CommandHandler("planet", planet_name))
     dp.add_handler(MessageHandler(Filters.text, talk_to_me))
 
     mybot.start_polling()
