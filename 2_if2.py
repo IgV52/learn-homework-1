@@ -22,11 +22,11 @@ def main():
     """
     a,b = (input("Введите что то: ") for _ in range(2))
 
-    if not isinstance(a, str) and not isinstance(b, str):
+    if not isinstance(a, str) or not isinstance(b, str):
       return print(0)
     elif a == b:
       return print(1)
-    elif len(a) > len(b):
+    elif len(a) > len(b) and a != b:
       return print(2)
     elif a != b and b == "learn":
       return print(3)

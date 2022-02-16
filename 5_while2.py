@@ -21,7 +21,7 @@ def ask_user(answers_dict):
     """
     Замените pass на ваш код
     """
-    user_n = input("Задай вопрос ")
+    user_n = (input("Задай вопрос ")).strip(" ")
     if user_n in questions_and_answers:
       return print(questions_and_answers[user_n])
     else:

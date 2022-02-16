@@ -34,7 +34,6 @@ def main():
         for value in i.values():
             if isinstance(value, str):
                 model = value
-                #info_sell.append(model)
             if isinstance(value, list):
                 lot_items = [i for i in value]
                 sum_lot_sell_model = 0
@@ -45,7 +44,6 @@ def main():
                 average_lot_sell_model = sum_lot_sell_model / len(lot_items)
                 average_total_sell_all_phone += average_lot_sell_model
                 info_sell.append(f"Сумма всех проданных телефонов {model} : {sum_lot_sell_model} их среднее количество продаж {average_lot_sell_model}")
-                #sum_lot_sell_model +=
     info_sell.append(f'Сумма всех проданных телефонов {total_summ_all_phone} и их среднее количество продаж {average_total_sell_all_phone}')
     return print(*info_sell, sep = "\n")
 

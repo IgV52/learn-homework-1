@@ -36,8 +36,7 @@ def planet_name(update, context):
     time = update.message.date 
     time = time.strftime("%m/%d/%Y")
     planet = context.args[0]
-    planet = getattr(ephem, planet)()
-    planet.compute(time)
+    planet = getattr(ephem, planet)(time)
     star = ephem.constellation(planet)
     stars = f"Сегодня находится в созвездии {star[1]}"
     if len(star) == 2:

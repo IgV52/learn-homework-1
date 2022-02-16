@@ -20,7 +20,7 @@ def hello_user():
         while n != "хорошо":
           n=(input("Как дела? ")).lower()
         break
-      except (KeyboardInterrupt):
+      except KeyboardInterrupt:
         return print("Пока!")
     
 if __name__ == "__main__":

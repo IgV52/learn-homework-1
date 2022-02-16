@@ -31,8 +31,8 @@ def discounted(price, discount, max_discount=20):
         return price
       else:
         return finall_price
-    except (ValueError, TypeError):
-      print("Ошибка")
+    except (ValueError, TypeError) as err:
+      print(f"Ошибка {err}")
 
 if __name__ == "__main__":
     print(discounted(100, 2))
